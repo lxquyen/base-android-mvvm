@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">sample</string>
+    <string name="create_user">Create</string>
+    <string name="text_username">username</string>
+    <string name="text_password">password</string>
+    <string name="text_email">email</string>
+    <string name="text_fullname">full name</string>
+    <string name="update_user">Update</string>
+    <string name="save_user">Save</string>
+    <string name="title_edit">Edit User</string>
 </resources>
