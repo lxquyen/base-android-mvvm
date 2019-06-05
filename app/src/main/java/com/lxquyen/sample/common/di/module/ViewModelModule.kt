@@ -3,7 +3,7 @@ package com.lxquyen.sample.common.di.module
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.lxquyen.sample.common.di.util.ViewModelKey
-import com.lxquyen.sample.presentation.viewmodel.UserViewModel
+import com.lxquyen.sample.presentation.viewmodel.MainViewModel
 import com.lxquyen.sample.presentation.viewmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -15,8 +15,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(UserViewModel::class)
-    abstract fun bindUserViewModel(userViewModel: UserViewModel): ViewModel
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(userViewModel: MainViewModel): ViewModel
 
     @Binds
     @Singleton

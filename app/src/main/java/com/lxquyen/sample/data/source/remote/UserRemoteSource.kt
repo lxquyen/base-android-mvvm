@@ -7,10 +7,10 @@ import retrofit2.http.*
 
 interface UserRemoteSource {
     @POST("users")
-    fun createUser(@Body userDto: UserDto): Completable
+    fun createUser(@Body userDto: UserDto): Observable<UserDto>
 
     @GET("users")
-    fun readUsers(): Observable<List<UserDto>>
+    fun readUsers(@Query("page") page: Int = 1, @Query("limit") limit : Int = 10): Observable<List<UserDto>>
 
     @PUT("users/{id}")
     fun updateUser(@Path("id") id: String?, @Body userDto: UserDto): Observable<UserDto>

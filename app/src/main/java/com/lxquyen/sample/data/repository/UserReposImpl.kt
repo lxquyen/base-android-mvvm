@@ -7,7 +7,6 @@ import com.lxquyen.sample.domain.model.User
 import com.lxquyen.sample.domain.repository.UserRepos
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class UserReposImpl @Inject constructor() : UserRepos {
@@ -19,13 +18,15 @@ class UserReposImpl @Inject constructor() : UserRepos {
     lateinit var mapper: Mapper<UserDto, User>
 
 
-    override fun createUser(user: User): Completable {
-        return userRemoteSource.createUser(mapper.reverse(user))
+    override fun createUser(user: User): Observable<User> {
+        return userRemoteSource
+            .createUser(mapper.reverse(user))
+            .map { mapper.map(it) }
     }
 
-    override fun getUsers(): Observable<List<User>> {
+    override fun getUsers(page: Int, limit: Int): Observable<List<User>> {
         return userRemoteSource
-            .readUsers()
+            .readUsers(page,limit)
             .map {
                 mapper.map(it)
             }

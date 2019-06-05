@@ -20,13 +20,9 @@ interface OnButtonClickCallback {
 
 class MainAdapter(private val onButtonClickCallback: OnButtonClickCallback) :
     RecyclerView.Adapter<MainAdapter.UserViewHolder>() {
-    var users = mutableListOf<User>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var users = mutableListOf<User>()
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MainAdapter.UserViewHolder {
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): UserViewHolder {
         val view = p0.inflateView(R.layout.item_user)
         return UserViewHolder(view)
     }
@@ -36,33 +32,63 @@ class MainAdapter(private val onButtonClickCallback: OnButtonClickCallback) :
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int, payloads: MutableList<Any>) {
-        if(payloads.isEmpty()){
+        if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads)
             return
         }
 
         payloads.forEach {
-            when(it){
-                is User ->{
+            when (it) {
+                is User -> {
                     holder.bindText(it)
                 }
             }
         }
     }
 
-    override fun onBindViewHolder(p0: MainAdapter.UserViewHolder, p1: Int) {
+    override fun onBindViewHolder(p0: UserViewHolder, p1: Int) {
         p0.bindData(users[p1])
     }
 
-    fun update(positionSelected: Int, user: User?) {
-        user?.let {
-            users[positionSelected].apply {
-                this.username = it.username
-                this.password = it.password
-                this.email = it.email
-                this.fullName = it.fullName
+
+    fun addAll(data: List<User>, isLoadMore: Boolean = false) {
+        if (isLoadMore) {
+            val oldSize = itemCount
+            users.addAll(data)
+            notifyItemRangeInserted(oldSize, data.size)
+        } else {
+            users.clear()
+            users.addAll(data)
+            notifyDataSetChanged()
+        }
+    }
+
+    fun update(data: List<User>?) {
+        data?.forEach { item ->
+            val index = users.indexOfFirst { it.id == item.id }
+            users[index].apply {
+                this.username = item.username
+                this.password = item.password
+                this.email = item.email
+                this.fullName = item.fullName
             }
-            notifyItemChanged(positionSelected,user)
+            notifyItemChanged(index, item)
+        }
+    }
+
+    fun insert(data: List<User>?) {
+        data ?: return
+        val oldSize = itemCount
+        users.addAll(data)
+        notifyItemRangeInserted(oldSize, data.size)
+    }
+
+    fun remove(data: List<User>?) {
+        data?.forEach { item ->
+            val index = users.indexOfFirst { it.id.equals(item.id)}
+            if(index == -1) return
+            users.removeAt(index)
+            notifyItemRemoved(index)
         }
     }
 
@@ -91,8 +117,6 @@ class MainAdapter(private val onButtonClickCallback: OnButtonClickCallback) :
             when (view.id) {
                 R.id.btn_edit -> onButtonClickCallback.onBtnEditClicked(adapterPosition, user)
                 R.id.btn_delete -> {
-                    users.removeAt(adapterPosition)
-                    notifyItemRemoved(adapterPosition)
                     onButtonClickCallback.onBtnDeleteClicked(user?.id)
                 }
             }

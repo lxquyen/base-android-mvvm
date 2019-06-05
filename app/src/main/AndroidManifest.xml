@@ -14,7 +14,8 @@
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning"
             tools:targetApi="p">
-        <activity android:name=".presentation.activity.MainActivity">
+        <activity android:name=".presentation.activity.MainActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

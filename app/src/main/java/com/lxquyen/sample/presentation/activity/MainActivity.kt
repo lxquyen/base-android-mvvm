@@ -1,12 +1,19 @@
 package com.lxquyen.sample.presentation.activity
 
-import android.os.Bundle
-import com.lxquyen.sample.R
+import com.lxquyen.sample.presentation.fragment.BaseFragment
+import com.lxquyen.sample.presentation.fragment.MainFragment
 
 class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun initFragment(): BaseFragment {
+        return MainFragment()
+    }
+
+    override fun getIdContainer(): Int {
+        return android.R.id.content
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

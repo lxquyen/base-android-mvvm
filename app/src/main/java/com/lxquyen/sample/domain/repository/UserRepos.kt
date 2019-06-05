@@ -5,9 +5,9 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 
 interface UserRepos {
-    fun createUser(user: User): Completable
+    fun createUser(user: User): Observable<User>
 
-    fun getUsers(): Observable<List<User>>
+    fun getUsers(page: Int, limit: Int): Observable<List<User>>
 
     fun updateUser(user: User): Observable<User>
 

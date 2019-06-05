@@ -1,6 +1,7 @@
 package com.lxquyen.sample.common.extensions
 
-import com.lxquyen.sample.presentation.view.BaseView
+import android.arch.lifecycle.MutableLiveData
+import com.lxquyen.sample.presentation.viewmodel.BaseViewModel
 import io.reactivex.Completable
 import io.reactivex.CompletableTransformer
 import io.reactivex.Observable
@@ -14,23 +15,23 @@ fun Disposable.addToCompositedisposable(compositeDisposable: CompositeDisposable
     compositeDisposable.add(this)
 }
 
-fun <T> observableTransformer(view: BaseView? = null): ObservableTransformer<T, T> {
+fun <T> observableTransformer(status: MutableLiveData<Int>? = null): ObservableTransformer<T, T> {
     return ObservableTransformer { observable ->
         observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { view?.showProgressDialog(true) }
-            .doFinally { view?.showProgressDialog(false) }
+            .doOnSubscribe { status?.value = BaseViewModel.RQ_START }
+            .doFinally { status?.value = BaseViewModel.RQ_FINISH }
     }
 }
 
-fun completableTransformer(view: BaseView? = null): CompletableTransformer {
+fun completableTransformer(status: MutableLiveData<Int>? = null): CompletableTransformer {
     return CompletableTransformer { observable ->
         observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { view?.showProgressDialog(true) }
-            .doFinally { view?.showProgressDialog(false) }
+            .doOnSubscribe { status?.value = BaseViewModel.RQ_START }
+            .doFinally { status?.value = BaseViewModel.RQ_FINISH }
     }
 }
 
