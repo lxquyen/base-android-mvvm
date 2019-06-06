@@ -1,7 +1,6 @@
 package com.lxquyen.sample.data.source.remote
 
 import com.lxquyen.sample.data.source.remote.model.UserDto
-import io.reactivex.Completable
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -16,5 +15,5 @@ interface UserRemoteSource {
     fun updateUser(@Path("id") id: String?, @Body userDto: UserDto): Observable<UserDto>
 
     @DELETE("users/{id}")
-    fun deleteUser(@Path("id") id: String?): Completable
+    fun deleteUser(@Path("id") id: String?): Observable<UserDto>
 }

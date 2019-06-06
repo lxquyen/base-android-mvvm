@@ -1,4 +1,4 @@
-package com.lxquyen.sample.presentation.viewmodel
+package com.lxquyen.sample.presentation.viewmodel.base
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

@@ -1,7 +1,6 @@
 package com.lxquyen.sample.domain.repository
 
 import com.lxquyen.sample.domain.model.User
-import io.reactivex.Completable
 import io.reactivex.Observable
 
 interface UserRepos {
@@ -11,5 +10,5 @@ interface UserRepos {
 
     fun updateUser(user: User): Observable<User>
 
-    fun deleteUser(id: String?): Completable
+    fun deleteUser(user: User): Observable<User>
 }

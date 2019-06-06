@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.lxquyen.sample.common.di.util.ViewModelKey
 import com.lxquyen.sample.presentation.viewmodel.MainViewModel
-import com.lxquyen.sample.presentation.viewmodel.ViewModelFactory
+import com.lxquyen.sample.presentation.viewmodel.base.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

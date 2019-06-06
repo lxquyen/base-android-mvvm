@@ -18,11 +18,10 @@ import com.lxquyen.sample.domain.model.User
 import com.lxquyen.sample.presentation.activity.MainActivity
 import com.lxquyen.sample.presentation.adapter.MainAdapter
 import com.lxquyen.sample.presentation.adapter.OnButtonClickCallback
-import com.lxquyen.sample.presentation.view.MainView
 import com.lxquyen.sample.presentation.viewmodel.MainViewModel
 import com.lxquyen.sample.presentation.widget.EndlessRecyclerViewScrollListener
 
-class MainFragment : BaseFragment(), MainView {
+class MainFragment : BaseFragment() {
 
     lateinit var mainViewModel: MainViewModel
 
@@ -80,8 +79,8 @@ class MainFragment : BaseFragment(), MainView {
                 (activity as MainActivity).addFragment(EditUserFragment(),true)
             }
 
-            override fun onBtnDeleteClicked(id: String?) {
-                mainViewModel.delete(id)
+            override fun onBtnDeleteClicked(user: User?) {
+                mainViewModel.delete(user)
             }
 
         })

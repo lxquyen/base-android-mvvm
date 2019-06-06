@@ -1,7 +1,7 @@
 package com.lxquyen.sample.common.extensions
 
 import android.arch.lifecycle.MutableLiveData
-import com.lxquyen.sample.presentation.viewmodel.BaseViewModel
+import com.lxquyen.sample.presentation.viewmodel.base.BaseViewModel
 import io.reactivex.Completable
 import io.reactivex.CompletableTransformer
 import io.reactivex.Observable

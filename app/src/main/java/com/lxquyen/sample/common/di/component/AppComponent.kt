@@ -12,6 +12,7 @@ import javax.inject.Singleton
         CommonModule::class,
         MapperModule::class,
         RemoteSourceModule::class,
+        LocalSourceModule::class,
         RepositoryModule::class,
         ViewModelModule::class
     ]

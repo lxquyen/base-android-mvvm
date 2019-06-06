@@ -15,7 +15,7 @@ import com.lxquyen.sample.domain.model.User
 
 interface OnButtonClickCallback {
     fun onBtnEditClicked(position: Int, user: User?)
-    fun onBtnDeleteClicked(id: String?)
+    fun onBtnDeleteClicked(user: User?)
 }
 
 class MainAdapter(private val onButtonClickCallback: OnButtonClickCallback) :
@@ -117,7 +117,7 @@ class MainAdapter(private val onButtonClickCallback: OnButtonClickCallback) :
             when (view.id) {
                 R.id.btn_edit -> onButtonClickCallback.onBtnEditClicked(adapterPosition, user)
                 R.id.btn_delete -> {
-                    onButtonClickCallback.onBtnDeleteClicked(user?.id)
+                    onButtonClickCallback.onBtnDeleteClicked(user)
                 }
             }
         }

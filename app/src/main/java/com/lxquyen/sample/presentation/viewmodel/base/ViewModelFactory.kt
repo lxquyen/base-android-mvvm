@@ -1,4 +1,4 @@
-package com.lxquyen.sample.presentation.viewmodel
+package com.lxquyen.sample.presentation.viewmodel.base
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

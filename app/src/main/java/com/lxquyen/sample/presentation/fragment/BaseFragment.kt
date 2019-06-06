@@ -11,14 +11,13 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.lxquyen.sample.common.MyApplication
 import com.lxquyen.sample.common.di.component.AppComponent
-import com.lxquyen.sample.presentation.view.BaseView
-import com.lxquyen.sample.presentation.viewmodel.BaseViewModel
-import com.lxquyen.sample.presentation.viewmodel.Status
-import com.lxquyen.sample.presentation.viewmodel.ViewModelFactory
+import com.lxquyen.sample.presentation.viewmodel.base.BaseViewModel
+import com.lxquyen.sample.presentation.viewmodel.base.Status
+import com.lxquyen.sample.presentation.viewmodel.base.ViewModelFactory
 import timber.log.Timber
 import javax.inject.Inject
 
-abstract class BaseFragment : Fragment(), BaseView {
+abstract class BaseFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -55,8 +54,8 @@ abstract class BaseFragment : Fragment(), BaseView {
         super.onDestroyView()
     }
 
-    override fun showProgressDialog(isShow: Boolean) {
-
+    private fun showProgressDialog(isShow: Boolean) {
+        //TODO
     }
 
     protected fun handleStatusRequest(@Status status: Int?, swipeRefreshLayout: SwipeRefreshLayout? = null) {
@@ -71,7 +70,7 @@ abstract class BaseFragment : Fragment(), BaseView {
         }
     }
 
-    protected fun handleError(throwable: Throwable?){
+    protected fun handleError(throwable: Throwable?) {
         Timber.e(throwable)
     }
 

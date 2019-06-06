@@ -10,6 +10,7 @@ import com.lxquyen.sample.domain.usecase.CreateUserUseCase
 import com.lxquyen.sample.domain.usecase.DeleteUserUseCase
 import com.lxquyen.sample.domain.usecase.ReadUsersUseCase
 import com.lxquyen.sample.domain.usecase.UpdateUserUseCase
+import com.lxquyen.sample.presentation.viewmodel.base.BaseViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -76,14 +77,13 @@ class MainViewModel @Inject constructor() : BaseViewModel() {
 
     }
 
-    fun delete(id: String?) {
+    fun delete(user: User?) {
         deleteUserUC
-            .execute(id)
-            .compose(completableTransformer(status))
+            .execute(user)
+            .compose(observableTransformer(status))
             .subscribe(
                 {
-                    val user = User(id = id)
-                    response.value = Response(Response.REMOVE, listOf(user))
+                    response.value = Response(Response.REMOVE, listOf(it))
                 }, this::handleError
             )
             .addToCompositedisposable(disposables)
