@@ -31,8 +31,9 @@ Sample app contains implementation of Clean architecture for Android using Kotli
   * Dagger 2
   * Gson
   * OkHttp3: okhttp/logging-intercepter
-  * Retrofi 2
+  * Retrofit 2
   * Glide
   * ButterKnife
   * Timber
   * SQLite - Room
+  * Lifecycle
